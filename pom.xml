@@ -11,7 +11,7 @@
 	<groupId>com.klef.jfsd.springboot</groupId>
 	<artifactId>OnlineAssignmentSDP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>OnlineAssignmentSDP</name>
 	<description>SDP Project</description>
 	<url/>
