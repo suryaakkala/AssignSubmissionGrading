@@ -1,14 +1,12 @@
-# Use a lightweight Java 17 image
-FROM eclipse-temurin:17-jdk-alpine
-
-# Set the working directory in the container
+# Use a Maven image to build the project
+FROM maven:3.9.4-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn package -DskipTests
 
-# Copy the built JAR file into the container
-COPY target/OnlineAssignmentSDP-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the port the app runs on
+# Use a lightweight Java image to run the app
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/OnlineAssignmentSDP-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Run the application
 CMD ["java", "-jar", "app.jar"]
